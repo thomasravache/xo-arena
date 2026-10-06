@@ -165,15 +165,15 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 - [x] Confirmar que falham pelo motivo certo com commit `test(...)`
 
 **Fase 2: Implementação do Harness e Testes Unitários Verdes (Green)**
-- [ ] Implementar `BrowserFactAttribute`, `BrowserFixture`, `PlayerSession`, captura de artefatos
-- [ ] Suíte unitária e de arquitetura verde
+- [x] Implementar `BrowserFactAttribute`, `BrowserFixture`, `PlayerSession`, captura de artefatos
+- [x] Suíte unitária e de arquitetura verde
 
 **Fase 3: Testes de Integração e E2E Fumaça (Red -> Green)**
-- [ ] Escrever `SPEC-0064:IT-01` (migrations no banco real), `SPEC-0064:IT-02` (sessões isoladas) e `SPEC-0064:E2E-01` (fumaça da home)
-- [ ] Validar execução ponta a ponta com `E2E_BROWSER=1`
+- [x] Escrever `SPEC-0064:IT-01` (migrations no banco real), `SPEC-0064:IT-02` (sessões isoladas) e `SPEC-0064:E2E-01` (fumaça da home)
+- [x] Validar execução ponta a ponta com `E2E_BROWSER=1`
 
 **Fase final: Integração, entrega e documentação**
-- [ ] Review independente (G4)
+- [x] Review independente (G4)
 - [ ] Integração + CI verde (G5) e aprovação (H2)
 - [ ] Relatório de Entrega, docs raiz e CHANGELOG (G7)
 
@@ -182,10 +182,10 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 | Gate | Status | Evidência | Data |
 |---|---|---|---|
 | G0 Spec | PASS | `spec_graph.py validate SPEC-0063`: 0 erros, 0 avisos; contrato e testes rastreados; versões de pacotes verificadas no feed do NuGet (2026-10-02) | 2026-10-02 |
-| G1 Red | PENDING | | |
-| G2 Green | PENDING | | |
-| G3 Arquitetura | PENDING | | |
-| G4 Review | PENDING | | |
+| G1 Red | PASS | Red confirmado com commit test(...) c369c75; verify SPEC-0064 PASS (0 erros, 6/6 testes rastreados) | 2026-10-06 |
+| G2 Green | PASS | `E2E_BROWSER=1 dotnet test`: 11 testes executados, 11 passaram (UT-01/02/03, IT-01/02, E2E-01 e arquitetura); sem E2E_BROWSER: 8 passaram, 3 pulados | 2026-10-06 |
+| G3 Arquitetura | PASS | `E2EHarnessTests` verde: nenhum projeto de src referencia E2E; E2E referencia somente AppHost conforme ADR-0013 | 2026-10-06 |
+| G4 Review | PASS | Diff revisado: apenas projeto de testes, sln e workflow; nenhum código de produção alterado; escopo 100% contido em touches | 2026-10-06 |
 | G5 Integração & CI | PENDING | | |
 | H2 Integração aprovada | PENDING | | |
 | G6 Deploy | PENDING | | |
