@@ -161,8 +161,8 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 - [x] Criar projeto `tests/TicTacToe.E2E` na solução referenciando `AppHost`, pacotes `Aspire.Hosting.Testing` e `Microsoft.Playwright` e workflow `.github/workflows/browser-e2e.yml`
 
 **Fase 1: Testes unitários e arquiteturais (Red)**
-- [ ] Escrever `SPEC-0064:UT-01` (`BrowserFactAttribute`), `SPEC-0064:UT-02` (evidências em falha) e `SPEC-0064:UT-03` (verificação do Docker) e teste de arquitetura garantindo dependências
-- [ ] Confirmar que falham pelo motivo certo com commit `test(...)`
+- [x] Escrever `SPEC-0064:UT-01` (`BrowserFactAttribute`), `SPEC-0064:UT-02` (evidências em falha) e `SPEC-0064:UT-03` (verificação do Docker) e teste de arquitetura garantindo dependências
+- [x] Confirmar que falham pelo motivo certo com commit `test(...)`
 
 **Fase 2: Implementação do Harness e Testes Unitários Verdes (Green)**
 - [ ] Implementar `BrowserFactAttribute`, `BrowserFixture`, `PlayerSession`, captura de artefatos
