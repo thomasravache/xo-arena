@@ -10,7 +10,7 @@ parent: SPEC-0063
 depends_on: []
 consumes_contract: []
 contract_version: 1
-touches: [TicTacToe.sln, .github/workflows/browser-e2e.yml, tests/TicTacToe.E2E/**]
+touches: [TicTacToe.sln, .github/workflows/browser-e2e.yml, tests/TicTacToe.E2E/**, .gitignore]
 adrs: [ADR-0013]
 external: []
 size: M
@@ -158,7 +158,7 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 ## 11. Checklist de Implementação
 <!-- Preenchido na fase PLAN, após a aprovação. Cada fase começa pelos testes. -->
 **Fase 0: Scaffold do projeto e CI**
-- [ ] Criar projeto `tests/TicTacToe.E2E` na solução referenciando `AppHost`, pacotes `Aspire.Hosting.Testing` e `Microsoft.Playwright` e workflow `.github/workflows/browser-e2e.yml`
+- [x] Criar projeto `tests/TicTacToe.E2E` na solução referenciando `AppHost`, pacotes `Aspire.Hosting.Testing` e `Microsoft.Playwright` e workflow `.github/workflows/browser-e2e.yml`
 
 **Fase 1: Testes unitários e arquiteturais (Red)**
 - [ ] Escrever `SPEC-0064:UT-01` (`BrowserFactAttribute`), `SPEC-0064:UT-02` (evidências em falha) e `SPEC-0064:UT-03` (verificação do Docker) e teste de arquitetura garantindo dependências
