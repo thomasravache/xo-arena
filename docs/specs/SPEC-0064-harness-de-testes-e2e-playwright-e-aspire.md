@@ -186,7 +186,7 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 | G2 Green | PASS | `E2E_BROWSER=1 dotnet test`: 11 testes executados, 11 passaram (UT-01/02/03, IT-01/02, E2E-01 e arquitetura); sem E2E_BROWSER: 8 passaram, 3 pulados | 2026-10-06 |
 | G3 Arquitetura | PASS | `E2EHarnessTests` verde: nenhum projeto de src referencia E2E; E2E referencia somente AppHost conforme ADR-0013 | 2026-10-06 |
 | G4 Review | PASS | Diff revisado: apenas projeto de testes, sln e workflow; nenhum código de produção alterado; escopo 100% contido em touches | 2026-10-06 |
-| G5 Integração & CI | PENDING | | |
+| G5 Integração & CI | PASS | PR #65 verde: dotnet-ci (2m26s), browser-e2e (1m51s) e sdd (6s) com 0 falhas | 2026-10-06 |
 | H2 Integração aprovada | PENDING | | |
 | G6 Deploy | PENDING | | |
 | G7 Pronto & Docs | PENDING | | |
