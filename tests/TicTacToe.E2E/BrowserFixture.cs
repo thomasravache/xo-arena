@@ -41,8 +41,17 @@ public sealed class BrowserFixture : IAsyncLifetime
 
         await _app.StartAsync();
 
-        // 5. Espera o webfrontend ficar saudável e obtém a URL HTTP
-        var endpoint = _app.GetEndpoint("webfrontend");
+        // 5. Espera o webfrontend ficar saudável e obtém a URL HTTP (conforme contrato SPEC-0064)
+        Uri endpoint;
+        try
+        {
+            endpoint = _app.GetEndpoint("webfrontend", "http");
+        }
+        catch
+        {
+            endpoint = _app.GetEndpoint("webfrontend");
+        }
+
         _baseUri = endpoint;
     }
 
@@ -68,7 +77,8 @@ public sealed class BrowserFixture : IAsyncLifetime
 
         var context = await _browser.NewContextAsync(new BrowserNewContextOptions
         {
-            ViewportSize = viewport ?? new ViewportSize { Width = 1440, Height = 900 }
+            ViewportSize = viewport ?? new ViewportSize { Width = 1440, Height = 900 },
+            IgnoreHTTPSErrors = true
         });
 
         await context.Tracing.StartAsync(new TracingStartOptions
