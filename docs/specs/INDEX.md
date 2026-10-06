@@ -5,19 +5,18 @@
 ## Saúde
 
 - Validação (G0): **0 erro(s), 0 aviso(s)**
-- Specs: approved 1, in-progress 1, implemented 55
+- Specs: approved 1, implemented 56
 - Impedimentos: **0 aberto(s)**, 0 resolvido(s)
 
 ## Plano de Execução
 
-**Em andamento:** SPEC-0064  
+**Em andamento:** —  
 **Paradas por impedimento:** —  
-**Próximo lote:** —
+**Próximo lote:** SPEC-0065
 
 | Onda | Spec | Título | Tier/Tam. | Status | Prontidão | Observação |
 |---|---|---|---|---|---|---|
-| 1 | SPEC-0064 | Harness de testes E2E: Playwright e Aspire | full/M | in-progress | 🔄 em andamento |  |
-| 2 | SPEC-0065 | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full/M | approved | ⛔ aguarda implementação de SPEC-0064 |  |
+| 1 | SPEC-0065 | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full/M | approved | ✅ pronta |  |
 
 ## Épicos
 
@@ -30,7 +29,7 @@
 | SPEC-0028 | Redesign Cyber Arena — migração da UI para Tailwind (Fase 1 visual) | implemented | 7/7 implementadas |
 | SPEC-0035 | Evolução funcional a partir do Stitch (Fase 2) | implemented | 9/9 implementadas |
 | SPEC-0046 | Xadrez multiplayer | implemented | 15/15 implementadas |
-| SPEC-0063 | Testes E2E em navegador real | approved | 0/2 implementadas |
+| SPEC-0063 | Testes E2E em navegador real | approved | 1/2 implementadas |
 
 ## Grafo de Dependências
 
@@ -39,7 +38,7 @@ Seta contínua: depende da implementação. Seta tracejada: consome contrato.
 ```mermaid
 flowchart LR
   subgraph E0063["SPEC-0063 · Testes E2E em navegador real"]
-    S0064["SPEC-0064<br/>Harness de testes E2E: Playwright e Asp…"]:::inprogress
+    S0064["SPEC-0064<br/>Harness de testes E2E: Playwright e Asp…"]:::implemented
     S0065["SPEC-0065<br/>Jornadas E2E em navegador: seleção, xad…"]:::approved
   end
   S0064 --> S0065
@@ -117,7 +116,7 @@ flowchart LR
 | [SPEC-0061](SPEC-0061-ciclo-de-vida-da-sessao-de-xadrez-abandono-revanche-e-presen.md) | Ciclo de vida da sessão de xadrez: abandono, revanche e presença | full | feature | implemented | 2026-09-29 | SPEC-0046 | SPEC-0052 | — |
 | [SPEC-0062](SPEC-0062-tabuleiro-de-xadrez-maior-no-desktop.md) | Tabuleiro de xadrez maior no desktop | lite | fix | implemented | 2026-09-29 | — | — | — |
 | [SPEC-0063](SPEC-0063-testes-e2e-em-navegador-real.md) | Testes E2E em navegador real | epic | feature | approved | 2026-10-02 | — | — | — |
-| [SPEC-0064](SPEC-0064-harness-de-testes-e2e-playwright-e-aspire.md) | Harness de testes E2E: Playwright e Aspire | full | foundation | in-progress | 2026-10-02 | SPEC-0063 | — | — |
+| [SPEC-0064](SPEC-0064-harness-de-testes-e2e-playwright-e-aspire.md) | Harness de testes E2E: Playwright e Aspire | full | foundation | implemented | 2026-10-02 | SPEC-0063 | — | — |
 | [SPEC-0065](SPEC-0065-jornadas-e2e-em-navegador-selecao-xadrez-solo-e-duelo.md) | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full | feature | approved | 2026-10-02 | SPEC-0063 | SPEC-0064 | — |
 
 ## ADRs
