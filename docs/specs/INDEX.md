@@ -1,16 +1,23 @@
 # Índice de Specs
 
-> Gerado por `spec_graph.py index` em 2026-09-29 — não edite manualmente.
+> Gerado por `spec_graph.py index` em 2026-10-06 — não edite manualmente.
 
 ## Saúde
 
 - Validação (G0): **0 erro(s), 0 aviso(s)**
-- Specs: implemented 55
+- Specs: approved 1, in-progress 1, implemented 55
 - Impedimentos: **0 aberto(s)**, 0 resolvido(s)
 
 ## Plano de Execução
 
-Nenhuma spec aberta.
+**Em andamento:** SPEC-0064  
+**Paradas por impedimento:** —  
+**Próximo lote:** —
+
+| Onda | Spec | Título | Tier/Tam. | Status | Prontidão | Observação |
+|---|---|---|---|---|---|---|
+| 1 | SPEC-0064 | Harness de testes E2E: Playwright e Aspire | full/M | in-progress | 🔄 em andamento |  |
+| 2 | SPEC-0065 | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full/M | approved | ⛔ aguarda implementação de SPEC-0064 |  |
 
 ## Épicos
 
@@ -23,6 +30,25 @@ Nenhuma spec aberta.
 | SPEC-0028 | Redesign Cyber Arena — migração da UI para Tailwind (Fase 1 visual) | implemented | 7/7 implementadas |
 | SPEC-0035 | Evolução funcional a partir do Stitch (Fase 2) | implemented | 9/9 implementadas |
 | SPEC-0046 | Xadrez multiplayer | implemented | 15/15 implementadas |
+| SPEC-0063 | Testes E2E em navegador real | approved | 0/2 implementadas |
+
+## Grafo de Dependências
+
+Seta contínua: depende da implementação. Seta tracejada: consome contrato.
+
+```mermaid
+flowchart LR
+  subgraph E0063["SPEC-0063 · Testes E2E em navegador real"]
+    S0064["SPEC-0064<br/>Harness de testes E2E: Playwright e Asp…"]:::inprogress
+    S0065["SPEC-0065<br/>Jornadas E2E em navegador: seleção, xad…"]:::approved
+  end
+  S0064 --> S0065
+  classDef proposed fill:#fef3c7,stroke:#d97706,color:#111
+  classDef approved fill:#dbeafe,stroke:#2563eb,color:#111
+  classDef inprogress fill:#ede9fe,stroke:#7c3aed,color:#111
+  classDef implemented fill:#dcfce7,stroke:#16a34a,color:#111
+  classDef deprecated fill:#f3f4f6,stroke:#9ca3af,color:#6b7280
+```
 
 ## Todas as Specs
 
@@ -90,6 +116,9 @@ Nenhuma spec aberta.
 | [SPEC-0060](SPEC-0060-abandono-revanche-e-desconexao-no-xadrez.md) | Abandono, revanche e desconexão no xadrez | full | feature | implemented | 2026-09-29 | SPEC-0046 | SPEC-0056, SPEC-0057, SPEC-0058, SPEC-0061 | — |
 | [SPEC-0061](SPEC-0061-ciclo-de-vida-da-sessao-de-xadrez-abandono-revanche-e-presen.md) | Ciclo de vida da sessão de xadrez: abandono, revanche e presença | full | feature | implemented | 2026-09-29 | SPEC-0046 | SPEC-0052 | — |
 | [SPEC-0062](SPEC-0062-tabuleiro-de-xadrez-maior-no-desktop.md) | Tabuleiro de xadrez maior no desktop | lite | fix | implemented | 2026-09-29 | — | — | — |
+| [SPEC-0063](SPEC-0063-testes-e2e-em-navegador-real.md) | Testes E2E em navegador real | epic | feature | approved | 2026-10-02 | — | — | — |
+| [SPEC-0064](SPEC-0064-harness-de-testes-e2e-playwright-e-aspire.md) | Harness de testes E2E: Playwright e Aspire | full | foundation | in-progress | 2026-10-02 | SPEC-0063 | — | — |
+| [SPEC-0065](SPEC-0065-jornadas-e2e-em-navegador-selecao-xadrez-solo-e-duelo.md) | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full | feature | approved | 2026-10-02 | SPEC-0063 | SPEC-0064 | — |
 
 ## ADRs
 
@@ -107,3 +136,4 @@ Nenhuma spec aberta.
 | [ADR-0010](../adr/ADR-0010-motor-de-regras-do-xadrez-proprio-validado-por-perft.md) | Motor de regras do xadrez próprio validado por perft | accepted | tests/TicTacToe.Tests/ChessPerftTests.cs |
 | [ADR-0011](../adr/ADR-0011-robo-de-xadrez-proprio-atras-de-uma-abstracao-ichessbot.md) | Robô de xadrez próprio atrás de uma abstração IChessBot | accepted | tests/TicTacToe.Tests/ChessBotTests.cs |
 | [ADR-0012](../adr/ADR-0012-generalizacao-multi-jogo-do-modelo-de-partidas.md) | Generalização multi-jogo do modelo de partidas | accepted | tests/TicTacToe.Tests/MultiGamePersistenceTests.cs |
+| [ADR-0013](../adr/ADR-0013-testes-e2e-em-navegador-com-playwright-e-aspire-hosting-test.md) | Testes E2E em navegador com Playwright e Aspire.Hosting.Testing | accepted | tests/TicTacToe.E2E/E2EHarnessTests.cs |

@@ -1,0 +1,66 @@
+name: browser-e2e
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: browser-e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser-e2e:
+    name: Browser E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Cache dos navegadores do Playwright
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('tests/TicTacToe.E2E/TicTacToe.E2E.csproj') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Cache do binário do Tailwind CSS
+        id: tailwind-cache
+        uses: actions/cache@v4
+        with:
+          path: tools/tailwind/bin
+          key: tailwind-${{ runner.os }}-${{ hashFiles('tools/tailwind/version.txt') }}
+
+      - name: Instalar Tailwind CSS standalone (sha256 verificado)
+        if: steps.tailwind-cache.outputs.cache-hit != 'true'
+        run: tools/tailwind/install.sh
+
+      - name: Verificar drift do CSS gerado (Tailwind)
+        run: tools/tailwind/build.sh --check
+
+      - name: Restore dependencies
+        run: dotnet restore tests/TicTacToe.E2E/TicTacToe.E2E.csproj
+
+      - name: Run Browser E2E Tests
+        env:
+          E2E_BROWSER: '1'
+        run: dotnet test tests/TicTacToe.E2E/TicTacToe.E2E.csproj --verbosity normal
+
+      - name: Upload E2E failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-e2e-artifacts
+          path: artifacts/e2e/
+          if-no-files-found: ignore

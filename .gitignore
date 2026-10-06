@@ -126,6 +126,10 @@ ipch/
 
 # Visual Studio Trace Files
 *.e2e
+!tests/TicTacToe.E2E/
+!tests/TicTacToe.E2E/**
+tests/TicTacToe.E2E/bin/
+tests/TicTacToe.E2E/obj/
 
 # TFS 2012 Local Workspace
 $tf/
