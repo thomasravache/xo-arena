@@ -21,7 +21,7 @@ public sealed class TabuleiroLayoutJourney
         await using var desktopPlayer = await _fixture.NewPlayerAsync("DesktopUser", new ViewportSize { Width = 1440, Height = 900 });
         await desktopPlayer.GotoAsync("/xadrez");
 
-        await desktopPlayer.Page.Locator("#playerName").FillAsync(NicknameGenerator.Generate("Dsk"));
+        await LobbyHelper.SetPlayerNameAsync(desktopPlayer.Page, NicknameGenerator.Generate("Dsk"));
         await desktopPlayer.Page.Locator("button:has-text('Iniciar partida solo')").ClickAsync();
 
         var desktopBoard = desktopPlayer.Page.Locator("[data-board]");
@@ -35,7 +35,7 @@ public sealed class TabuleiroLayoutJourney
         await using var mobilePlayer = await _fixture.NewPlayerAsync("MobileUser", new ViewportSize { Width = 390, Height = 844 });
         await mobilePlayer.GotoAsync("/xadrez");
 
-        await mobilePlayer.Page.Locator("#playerName").FillAsync(NicknameGenerator.Generate("Mob"));
+        await LobbyHelper.SetPlayerNameAsync(mobilePlayer.Page, NicknameGenerator.Generate("Mob"));
         await mobilePlayer.Page.Locator("button:has-text('Iniciar partida solo')").ClickAsync();
 
         var mobileBoard = mobilePlayer.Page.Locator("[data-board]");

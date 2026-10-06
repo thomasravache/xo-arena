@@ -25,13 +25,13 @@ public sealed class XadrezDueloJourney
 
         // 1. Jogador 1 entra na fila preferindo Brancas
         await p1.GotoAsync("/xadrez");
-        await p1.Page.Locator("#playerName").FillAsync(whiteNick);
+        await LobbyHelper.SetPlayerNameAsync(p1.Page, whiteNick);
         await p1.Page.Locator("button:has-text('Brancas')").ClickAsync();
         await p1.Page.Locator("button:has-text('Procurar oponente')").ClickAsync();
 
         // 2. Jogador 2 entra na fila preferindo Pretas
         await p2.GotoAsync("/xadrez");
-        await p2.Page.Locator("#playerName").FillAsync(blackNick);
+        await LobbyHelper.SetPlayerNameAsync(p2.Page, blackNick);
         await p2.Page.Locator("button:has-text('Pretas')").ClickAsync();
         await p2.Page.Locator("button:has-text('Procurar oponente')").ClickAsync();
 
@@ -92,7 +92,12 @@ public sealed class XadrezDueloJourney
         await Assertions.Expect(p2EndTitle).ToContainTextAsync(winnerName);
 
         // 6. Confere que a partida finalizada está gravada no SQL Server real acessando o histórico
-        await p1.GotoAsync("/history?game=Chess");
+        await p1.GotoAsync("/history?jogo=xadrez");
+        var scopeAll = p1.Page.Locator("button[role='radio']:has-text('Todos')");
+        if (await scopeAll.IsVisibleAsync())
+        {
+            await scopeAll.ClickAsync();
+        }
         var historyCell = p1.Page.Locator("td[data-cell='duelo']").First;
 
         await Assertions.Expect(historyCell).ToBeVisibleAsync(new() { Timeout = 10000 });

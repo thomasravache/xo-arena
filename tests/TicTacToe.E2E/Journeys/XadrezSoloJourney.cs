@@ -25,8 +25,7 @@ public sealed class XadrezSoloJourney
 
         // 2. Preenche apelido
         var playerName = NicknameGenerator.Generate("Solo");
-        var nameInput = page.Locator("#playerName");
-        await nameInput.FillAsync(playerName);
+        await LobbyHelper.SetPlayerNameAsync(page, playerName);
 
         // 3. Garante Brancas selecionadas
         var whiteOption = page.Locator("button:has-text('Brancas')");
@@ -34,7 +33,6 @@ public sealed class XadrezSoloJourney
 
         // 4. Inicia partida solo contra o robô
         var startSoloBtn = page.Locator("button:has-text('Iniciar partida solo')");
-        await Assertions.Expect(startSoloBtn).ToBeEnabledAsync();
         await startSoloBtn.ClickAsync();
 
         // 5. Aguarda arena e tabuleiro carregarem

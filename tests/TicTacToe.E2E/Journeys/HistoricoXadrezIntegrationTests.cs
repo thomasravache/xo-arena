@@ -29,7 +29,7 @@ public sealed class HistoricoXadrezIntegrationTests
         const string finalFen = "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3";
         const string timeControl = "blitz5+0";
         const int gameTypeChess = 1; // GameType.Chess
-        const int reasonCheckmate = 5; // EndReason.Checkmate
+        const string reasonCheckmate = "Checkmate"; // EndReason.Checkmate é gravado como string no EF Core
         const int gameModeOnline = 0; // GameMode.Online
 
         await using (var insertCmd = connection.CreateCommand())
@@ -74,7 +74,7 @@ public sealed class HistoricoXadrezIntegrationTests
             Assert.Equal(finalFen, reader.GetString(1));
             Assert.Equal(movesSan, reader.GetString(2));
             Assert.Equal(timeControl, reader.GetString(3));
-            Assert.Equal(reasonCheckmate, reader.GetInt32(4));
+            Assert.Equal(reasonCheckmate, reader.GetString(4));
             Assert.Equal(blackPlayer, reader.GetString(5));
         }
     }
