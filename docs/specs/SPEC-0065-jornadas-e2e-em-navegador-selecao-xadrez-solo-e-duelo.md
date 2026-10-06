@@ -4,7 +4,7 @@ title: "Jornadas E2E em navegador: seleção, xadrez solo e duelo"
 tier: full
 type: feature
 user_facing: true
-status: approved
+status: in-progress
 created: 2026-10-02
 parent: SPEC-0063
 depends_on: [SPEC-0064]
@@ -82,6 +82,7 @@ TabuleiroLayoutJourney  : E2E-04   // largura do [data-board] no desktop e no ce
 |---|---|---|---|
 | Apelidos de teste | Gerar apelidos para jogadores do mesmo teste | Únicos e dentro do limite do campo (20) | SPEC-0065:UT-01 |
 | Roteiro do mate do tolo | Lances f3, e5, g4, Dh4 | Convertidos em pares de casas origem→destino | SPEC-0065:UT-02 |
+| Persistência de xadrez no banco | Registro de xadrez gravado no SQL Server real | Colunas GameType, FinalFen, MovesSan e TimeControl íntegras | SPEC-0065:IT-01 |
 | Seleção de jogos | Abrir `/` | Duas cartas; "Jogar Xadrez" leva a `/xadrez`, "Jogar Jogo da Velha" a `/velha`; "Jogar" ativo no menu | SPEC-0065:E2E-01 |
 | Xadrez solo | Apelido, solo Fácil, Brancas, clique e2→e4 | Lance aparece na lista, o robô responde com um lance e a vez volta ao jogador; Abandonar volta ao lobby | SPEC-0065:E2E-02 |
 | Duelo de xadrez | Dois jogadores na fila Blitz; 1.f3 e5 2.g4 Dh4# | Ambos veem xeque-mate e o vencedor; a partida aparece no histórico do xadrez de um deles | SPEC-0065:E2E-03 |
@@ -98,7 +99,7 @@ N/A — só testes novos de navegador; o comportamento do app não muda.
 - **UT-02** — Dada a notação de lance do mate do tolo (f3, e5, g4, Dh4), quando o helper de lances a converte em pares de casas, então produz f2→f3, e7→e5, g2→g4 e d8→h4.
 
 ### 7.3 Testes de Integração
-- N/A — a integração com o SQL Server real é exercitada nas jornadas (E2E-03) e na SPEC-0064 (IT-01).
+- **IT-01** — Dado o SQL Server real iniciado pelo BrowserFixture, quando uma partida de xadrez com dados de AddGameType e AddChessInfo (GameType, FinalFen, MovesSan, TimeControl) é persistida em `Gameplay.MatchResults`, então a consulta retorna os campos e enums com integridade.
 
 ### 7.4 Testes de Contrato
 N/A — sem contrato entre specs (o contrato desta spec é consumido pelas filhas seguintes por depends_on).
@@ -133,20 +134,21 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 
 ## 11. Checklist de Implementação
 <!-- Preenchido na fase PLAN, após a aprovação. Cada fase começa pelos testes. -->
-**Fase 1: Helpers e Testes Unitários (Red -> Green)**
-- [ ] Escrever `SPEC-0065:UT-01` (gerador de apelidos) e `SPEC-0065:UT-02` (notação do mate do tolo)
-- [ ] Implementar helpers em `tests/TicTacToe.E2E/Journeys/Helpers` mantendo testes verdes
+**Fase 1: Helpers, Testes Unitários e Integração (Red -> Green)**
+- [x] Escrever `SPEC-0065:UT-01` (gerador de apelidos) e `SPEC-0065:UT-02` (notação do mate do tolo)
+- [x] Escrever `SPEC-0065:IT-01` (persistência e integridade de xadrez no SQL Server real)
+- [x] Implementar helpers em `tests/TicTacToe.E2E/Journeys/Helpers` mantendo testes verdes
 
 **Fase 2: Jornadas E2E de Seleção e Layout (Red -> Green)**
-- [ ] Escrever `SPEC-0065:E2E-01` (seleção de jogos `/`, `/velha`, `/xadrez`) e `SPEC-0065:E2E-04` (tamanho do tabuleiro em desktop e mobile)
-- [ ] Implementar seletores e páginas correspondentes e validar execução verde
+- [x] Escrever `SPEC-0065:E2E-01` (seleção de jogos `/`, `/velha`, `/xadrez`) e `SPEC-0065:E2E-04` (tamanho do tabuleiro em desktop e mobile)
+- [x] Implementar seletores e páginas correspondentes e validar execução verde
 
 **Fase 3: Jornadas E2E de Xadrez Solo e Duelo Real (Red -> Green)**
-- [ ] Escrever `SPEC-0065:E2E-02` (xadrez solo contra robô) e `SPEC-0065:E2E-03` (duelo entre dois jogadores até o mate do tolo com verificação no histórico do SQL Server real)
-- [ ] Validar execução verde com `E2E_BROWSER=1`
+- [x] Escrever `SPEC-0065:E2E-02` (xadrez solo contra robô) e `SPEC-0065:E2E-03` (duelo entre dois jogadores até o mate do tolo com verificação no histórico do SQL Server real)
+- [x] Validar execução verde com `E2E_BROWSER=1`
 
 **Fase final: Integração, entrega e documentação**
-- [ ] Review independente (G4)
+- [x] Review independente (G4)
 - [ ] Integração + CI verde (G5) e aprovação (H2)
 - [ ] Relatório de Entrega, docs raiz e CHANGELOG (G7)
 
@@ -155,10 +157,10 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 | Gate | Status | Evidência | Data |
 |---|---|---|---|
 | G0 Spec | PASS | `spec_graph.py validate SPEC-0063`: 0 erros, 0 avisos; contrato e testes rastreados; versões de pacotes verificadas no feed do NuGet (2026-10-02) | 2026-10-02 |
-| G1 Red | PENDING | | |
-| G2 Green | PENDING | | |
-| G3 Arquitetura | PENDING | | |
-| G4 Review | PENDING | | |
+| G1 Red | PASS | `verify SPEC-0065`: 7/7 testes rastreados, primeiro red commit 2c57a66 | 2026-10-06 |
+| G2 Green | PASS | `E2E_BROWSER=1 dotnet test tests/TicTacToe.E2E`: 8/8 jornadas e 19/19 testes totais passando | 2026-10-06 |
+| G3 Arquitetura | PASS | Respeito à ADR-0013 e escopo restrito a `tests/TicTacToe.E2E/Journeys/**`; isolamento de contextos garantido | 2026-10-06 |
+| G4 Review | PASS | Revisão independente sem blockers ou débitos; suíte padrão e E2E sem flaky tests | 2026-10-06 |
 | G5 Integração & CI | PENDING | | |
 | H2 Integração aprovada | PENDING | | |
 | G6 Deploy | PENDING | | |

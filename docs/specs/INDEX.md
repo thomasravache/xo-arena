@@ -5,18 +5,18 @@
 ## Saúde
 
 - Validação (G0): **0 erro(s), 0 aviso(s)**
-- Specs: approved 1, implemented 56
+- Specs: in-progress 1, implemented 56
 - Impedimentos: **0 aberto(s)**, 0 resolvido(s)
 
 ## Plano de Execução
 
-**Em andamento:** —  
+**Em andamento:** SPEC-0065  
 **Paradas por impedimento:** —  
-**Próximo lote:** SPEC-0065
+**Próximo lote:** —
 
 | Onda | Spec | Título | Tier/Tam. | Status | Prontidão | Observação |
 |---|---|---|---|---|---|---|
-| 1 | SPEC-0065 | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full/M | approved | ✅ pronta |  |
+| 1 | SPEC-0065 | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full/M | in-progress | 🔄 em andamento |  |
 
 ## Épicos
 
@@ -39,7 +39,7 @@ Seta contínua: depende da implementação. Seta tracejada: consome contrato.
 flowchart LR
   subgraph E0063["SPEC-0063 · Testes E2E em navegador real"]
     S0064["SPEC-0064<br/>Harness de testes E2E: Playwright e Asp…"]:::implemented
-    S0065["SPEC-0065<br/>Jornadas E2E em navegador: seleção, xad…"]:::approved
+    S0065["SPEC-0065<br/>Jornadas E2E em navegador: seleção, xad…"]:::inprogress
   end
   S0064 --> S0065
   classDef proposed fill:#fef3c7,stroke:#d97706,color:#111
@@ -117,7 +117,7 @@ flowchart LR
 | [SPEC-0062](SPEC-0062-tabuleiro-de-xadrez-maior-no-desktop.md) | Tabuleiro de xadrez maior no desktop | lite | fix | implemented | 2026-09-29 | — | — | — |
 | [SPEC-0063](SPEC-0063-testes-e2e-em-navegador-real.md) | Testes E2E em navegador real | epic | feature | approved | 2026-10-02 | — | — | — |
 | [SPEC-0064](SPEC-0064-harness-de-testes-e2e-playwright-e-aspire.md) | Harness de testes E2E: Playwright e Aspire | full | foundation | implemented | 2026-10-02 | SPEC-0063 | — | — |
-| [SPEC-0065](SPEC-0065-jornadas-e2e-em-navegador-selecao-xadrez-solo-e-duelo.md) | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full | feature | approved | 2026-10-02 | SPEC-0063 | SPEC-0064 | — |
+| [SPEC-0065](SPEC-0065-jornadas-e2e-em-navegador-selecao-xadrez-solo-e-duelo.md) | Jornadas E2E em navegador: seleção, xadrez solo e duelo | full | feature | in-progress | 2026-10-02 | SPEC-0063 | SPEC-0064 | — |
 
 ## ADRs
 
