@@ -3,13 +3,13 @@ id: SPEC-0063
 title: Testes E2E em navegador real
 tier: epic
 type: feature
-status: proposed
+status: approved
 created: 2026-10-02
 depends_on: []
 adrs: [ADR-0013]
 external: []
-approved_by:
-approved_at:
+approved_by: thomas
+approved_at: 2026-10-06
 ---
 
 # SPEC-0063 — Testes E2E em navegador real (Épico)

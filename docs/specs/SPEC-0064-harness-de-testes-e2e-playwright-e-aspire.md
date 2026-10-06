@@ -4,7 +4,7 @@ title: "Harness de testes E2E: Playwright e Aspire"
 tier: full
 type: foundation
 user_facing: false
-status: proposed
+status: approved
 created: 2026-10-02
 parent: SPEC-0063
 depends_on: []
@@ -14,8 +14,8 @@ touches: [TicTacToe.sln, .github/workflows/browser-e2e.yml, tests/TicTacToe.E2E/
 adrs: [ADR-0013]
 external: []
 size: M
-approved_by:
-approved_at:
+approved_by: thomas
+approved_at: 2026-10-06
 ---
 
 # SPEC-0064 — Harness de testes E2E: Playwright e Aspire
@@ -157,6 +157,25 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 
 ## 11. Checklist de Implementação
 <!-- Preenchido na fase PLAN, após a aprovação. Cada fase começa pelos testes. -->
+**Fase 0: Scaffold do projeto e CI**
+- [ ] Criar projeto `tests/TicTacToe.E2E` na solução referenciando `AppHost`, pacotes `Aspire.Hosting.Testing` e `Microsoft.Playwright` e workflow `.github/workflows/browser-e2e.yml`
+
+**Fase 1: Testes unitários e arquiteturais (Red)**
+- [ ] Escrever `SPEC-0064:UT-01` (`BrowserFactAttribute`), `SPEC-0064:UT-02` (evidências em falha) e `SPEC-0064:UT-03` (verificação do Docker) e teste de arquitetura garantindo dependências
+- [ ] Confirmar que falham pelo motivo certo com commit `test(...)`
+
+**Fase 2: Implementação do Harness e Testes Unitários Verdes (Green)**
+- [ ] Implementar `BrowserFactAttribute`, `BrowserFixture`, `PlayerSession`, captura de artefatos
+- [ ] Suíte unitária e de arquitetura verde
+
+**Fase 3: Testes de Integração e E2E Fumaça (Red -> Green)**
+- [ ] Escrever `SPEC-0064:IT-01` (migrations no banco real), `SPEC-0064:IT-02` (sessões isoladas) e `SPEC-0064:E2E-01` (fumaça da home)
+- [ ] Validar execução ponta a ponta com `E2E_BROWSER=1`
+
+**Fase final: Integração, entrega e documentação**
+- [ ] Review independente (G4)
+- [ ] Integração + CI verde (G5) e aprovação (H2)
+- [ ] Relatório de Entrega, docs raiz e CHANGELOG (G7)
 
 ## 12. Registro de Gates
 <!-- Status: PENDING | PASS | FAIL | N/A. PASS e N/A exigem evidência (comando + resultado, SHA, execução de CI, veredito). -->

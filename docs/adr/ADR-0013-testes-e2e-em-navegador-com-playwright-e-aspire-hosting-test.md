@@ -1,7 +1,7 @@
 ---
 id: ADR-0013
 title: Testes E2E em navegador com Playwright e Aspire.Hosting.Testing
-status: proposed
+status: accepted
 origin: decision
 date: 2026-10-02
 decision_makers: [thomas]

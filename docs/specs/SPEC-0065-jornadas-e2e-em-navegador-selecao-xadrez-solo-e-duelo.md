@@ -4,7 +4,7 @@ title: "Jornadas E2E em navegador: seleção, xadrez solo e duelo"
 tier: full
 type: feature
 user_facing: true
-status: proposed
+status: approved
 created: 2026-10-02
 parent: SPEC-0063
 depends_on: [SPEC-0064]
@@ -14,8 +14,8 @@ touches: [tests/TicTacToe.E2E/Journeys/**]
 adrs: [ADR-0013]
 external: []
 size: M
-approved_by:
-approved_at:
+approved_by: thomas
+approved_at: 2026-10-06
 ---
 
 # SPEC-0065 — Jornadas E2E em navegador: seleção, xadrez solo e duelo
@@ -133,6 +133,22 @@ Registrada no frontmatter (`approved_by`, `approved_at`) somente depois que o hu
 
 ## 11. Checklist de Implementação
 <!-- Preenchido na fase PLAN, após a aprovação. Cada fase começa pelos testes. -->
+**Fase 1: Helpers e Testes Unitários (Red -> Green)**
+- [ ] Escrever `SPEC-0065:UT-01` (gerador de apelidos) e `SPEC-0065:UT-02` (notação do mate do tolo)
+- [ ] Implementar helpers em `tests/TicTacToe.E2E/Journeys/Helpers` mantendo testes verdes
+
+**Fase 2: Jornadas E2E de Seleção e Layout (Red -> Green)**
+- [ ] Escrever `SPEC-0065:E2E-01` (seleção de jogos `/`, `/velha`, `/xadrez`) e `SPEC-0065:E2E-04` (tamanho do tabuleiro em desktop e mobile)
+- [ ] Implementar seletores e páginas correspondentes e validar execução verde
+
+**Fase 3: Jornadas E2E de Xadrez Solo e Duelo Real (Red -> Green)**
+- [ ] Escrever `SPEC-0065:E2E-02` (xadrez solo contra robô) e `SPEC-0065:E2E-03` (duelo entre dois jogadores até o mate do tolo com verificação no histórico do SQL Server real)
+- [ ] Validar execução verde com `E2E_BROWSER=1`
+
+**Fase final: Integração, entrega e documentação**
+- [ ] Review independente (G4)
+- [ ] Integração + CI verde (G5) e aprovação (H2)
+- [ ] Relatório de Entrega, docs raiz e CHANGELOG (G7)
 
 ## 12. Registro de Gates
 <!-- Status: PENDING | PASS | FAIL | N/A. PASS e N/A exigem evidência (comando + resultado, SHA, execução de CI, veredito). -->
