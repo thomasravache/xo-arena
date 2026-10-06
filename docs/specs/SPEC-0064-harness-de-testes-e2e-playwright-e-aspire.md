@@ -4,7 +4,7 @@ title: "Harness de testes E2E: Playwright e Aspire"
 tier: full
 type: foundation
 user_facing: false
-status: approved
+status: in-progress
 created: 2026-10-02
 parent: SPEC-0063
 depends_on: []
